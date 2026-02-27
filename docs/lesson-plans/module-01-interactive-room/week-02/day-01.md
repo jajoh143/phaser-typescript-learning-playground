@@ -14,6 +14,16 @@ Use arrays and loops to build repeated UI text safely.
 ## Implementation Task
 Store interactable names in an array and render them as a vertical list.
 
+
+## Why This Change Matters
+- Today's change (Store interactable names in an array and render them as a vertical list.) directly supports the goal (Render arrays on screen.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Model repeated game data as arrays so Store interactable names in an array and render them as a vertical list. can be iterated and rendered predictably.
+- Use this reference to verify exact behavior while implementing Store interactable names in an array and render them as a vertical list..
+- Model repeated game data as arrays so Store interactable names in an array and render them as a vertical list. can be iterated and rendered predictably.
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

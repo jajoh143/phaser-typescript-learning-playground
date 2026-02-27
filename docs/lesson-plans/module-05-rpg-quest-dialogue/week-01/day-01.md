@@ -14,6 +14,16 @@ Model conversation nodes and choices with types.
 ## Implementation Task
 Create typed interfaces for DialogueNode and DialogueChoice.
 
+
+## Why This Change Matters
+- Today's change (Create typed interfaces for DialogueNode and DialogueChoice.) directly supports the goal (Define dialogue data structures.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Create typed interfaces for DialogueNode and DialogueChoice..
+- Use this reference to verify exact behavior while implementing Create typed interfaces for DialogueNode and DialogueChoice..
+- Use this reference to verify exact behavior while implementing Create typed interfaces for DialogueNode and DialogueChoice..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

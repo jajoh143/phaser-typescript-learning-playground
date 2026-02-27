@@ -14,6 +14,16 @@ Connect keyboard input to player position updates.
 ## Implementation Task
 Create a player object and move it with arrow keys or WASD.
 
+
+## Why This Change Matters
+- Today's change (Create a player object and move it with arrow keys or WASD.) directly supports the goal (Add controllable player movement.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Input docs encourage event-based wiring, reducing duplicated polling logic and missed edge cases.
+- Use this reference to verify exact behavior while implementing Create a player object and move it with arrow keys or WASD..
+- Use this reference to verify exact behavior while implementing Create a player object and move it with arrow keys or WASD..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

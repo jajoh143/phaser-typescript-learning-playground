@@ -14,6 +14,16 @@ Set up Arcade Physics world and player body.
 ## Implementation Task
 Enable physics and create a player sprite/shape with gravity applied.
 
+
+## Why This Change Matters
+- Today's change (Enable physics and create a player sprite/shape with gravity applied.) directly supports the goal (Initialize gravity-based platformer.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Use this reference to verify exact behavior while implementing Enable physics and create a player sprite/shape with gravity applied..
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

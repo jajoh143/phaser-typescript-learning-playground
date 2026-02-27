@@ -14,6 +14,16 @@ Render text box and support advancing dialogue.
 ## Implementation Task
 Create UI panel showing NPC line and current choice prompt.
 
+
+## Why This Change Matters
+- Today's change (Create UI panel showing NPC line and current choice prompt.) directly supports the goal (Build dialogue UI scaffold.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Create UI panel showing NPC line and current choice prompt..
+- Use this reference to verify exact behavior while implementing Create UI panel showing NPC line and current choice prompt..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

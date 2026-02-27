@@ -14,6 +14,16 @@ Improve readability by extracting pure functions.
 ## Implementation Task
 Move duplicated text update logic into one helper and call it from each event.
 
+
+## Why This Change Matters
+- Today's change (Move duplicated text update logic into one helper and call it from each event.) directly supports the goal (Refactor repeated logic into helpers.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Typed helper functions make Move duplicated text update logic into one helper and call it from each event. easier to test and refactor without scene regressions.
+- Typed helper functions make Move duplicated text update logic into one helper and call it from each event. easier to test and refactor without scene regressions.
+- Use this reference to verify exact behavior while implementing Move duplicated text update logic into one helper and call it from each event..
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

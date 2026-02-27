@@ -14,6 +14,16 @@ Map input coordinates to row/column state updates.
 ## Implementation Task
 Implement a function that flips one tile value between 0 and 1.
 
+
+## Why This Change Matters
+- Today's change (Implement a function that flips one tile value between 0 and 1.) directly supports the goal (Toggle one tile on click.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Input docs encourage event-based wiring, reducing duplicated polling logic and missed edge cases.
+- Use this reference to verify exact behavior while implementing Implement a function that flips one tile value between 0 and 1..
+- Typed helper functions make Implement a function that flips one tile value between 0 and 1. easier to test and refactor without scene regressions.
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

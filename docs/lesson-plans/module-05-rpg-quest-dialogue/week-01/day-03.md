@@ -14,6 +14,16 @@ Update state based on selected choices.
 ## Implementation Task
 Implement at least two dialogue branches and next-node selection.
 
+
+## Why This Change Matters
+- Today's change (Implement at least two dialogue branches and next-node selection.) directly supports the goal (Add branching dialogue paths.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Implement at least two dialogue branches and next-node selection..
+- Use this reference to verify exact behavior while implementing Implement at least two dialogue branches and next-node selection..
+- Use this reference to verify exact behavior while implementing Implement at least two dialogue branches and next-node selection..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

@@ -14,6 +14,16 @@ Reuse module-04 outcome to unlock second gate.
 ## Implementation Task
 Mark platformGate complete when player reaches platform win condition.
 
+
+## Why This Change Matters
+- Today's change (Mark platformGate complete when player reaches platform win condition.) directly supports the goal (Integrate platform gate.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Use this reference to verify exact behavior while implementing Mark platformGate complete when player reaches platform win condition..
+- Use this reference to verify exact behavior while implementing Mark platformGate complete when player reaches platform win condition..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

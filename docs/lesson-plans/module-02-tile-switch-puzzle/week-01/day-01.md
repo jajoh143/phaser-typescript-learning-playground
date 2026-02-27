@@ -14,6 +14,16 @@ Represent board state using a 2D array type.
 ## Implementation Task
 Define PuzzleGrid and initialize a 3x3 starter board.
 
+
+## Why This Change Matters
+- Today's change (Define PuzzleGrid and initialize a 3x3 starter board.) directly supports the goal (Model puzzle state as a typed grid.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Model repeated game data as arrays so Define PuzzleGrid and initialize a 3x3 starter board. can be iterated and rendered predictably.
+- Model repeated game data as arrays so Define PuzzleGrid and initialize a 3x3 starter board. can be iterated and rendered predictably.
+- Use this reference to verify exact behavior while implementing Define PuzzleGrid and initialize a 3x3 starter board..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

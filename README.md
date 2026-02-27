@@ -15,6 +15,8 @@ Open the local Vite URL shown in your terminal.
 
 - `docs/lesson-plan.md`: High-level 12-week curriculum overview
 - `docs/lesson-plans/`: Day-by-day plans by module/week/day (60 files total)
+  - `day-01.md`: Primary track (beginner JS/TS + Phaser basics)
+  - `day-01-advanced.md`: Secondary Phaser-first track for experienced JS/TS developers
 - `src/main.ts`: App entrypoint
 - `src/game/config.ts`: Phaser game configuration
 - `src/scenes/`: Boot and module hub scenes

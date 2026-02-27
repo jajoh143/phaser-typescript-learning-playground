@@ -14,6 +14,16 @@ Track quest lifecycle explicitly with string unions.
 ## Implementation Task
 Create quest statuses locked/active/complete and transition functions.
 
+
+## Why This Change Matters
+- Today's change (Create quest statuses locked/active/complete and transition functions.) directly supports the goal (Model quest state transitions.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Create quest statuses locked/active/complete and transition functions..
+- Use this reference to verify exact behavior while implementing Create quest statuses locked/active/complete and transition functions..
+- Use this reference to verify exact behavior while implementing Create quest statuses locked/active/complete and transition functions..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

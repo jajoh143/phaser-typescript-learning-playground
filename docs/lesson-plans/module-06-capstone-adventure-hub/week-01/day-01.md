@@ -14,6 +14,16 @@ Plan integration points from earlier modules.
 ## Implementation Task
 Sketch hub flow and create gate placeholders for puzzle/platform/quest.
 
+
+## Why This Change Matters
+- Today's change (Sketch hub flow and create gate placeholders for puzzle/platform/quest.) directly supports the goal (Define capstone hub map and gates.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Use this reference to verify exact behavior while implementing Sketch hub flow and create gate placeholders for puzzle/platform/quest..
+- Use this reference to verify exact behavior while implementing Sketch hub flow and create gate placeholders for puzzle/platform/quest..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

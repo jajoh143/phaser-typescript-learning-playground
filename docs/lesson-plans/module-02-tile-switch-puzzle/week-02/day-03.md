@@ -14,6 +14,16 @@ Generate replayable variation while keeping puzzle solvable.
 ## Implementation Task
 Create a randomizer function and verify it never produces an impossible board for your rule set.
 
+
+## Why This Change Matters
+- Today's change (Create a randomizer function and verify it never produces an impossible board for your rule set.) directly supports the goal (Randomize valid board starts.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Create a randomizer function and verify it never produces an impossible board for your rule set..
+- Type narrowing helps branch logic stay safe when game state can be in multiple valid forms.
+- Use this reference to verify exact behavior while implementing Create a randomizer function and verify it never produces an impossible board for your rule set..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

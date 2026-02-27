@@ -14,6 +14,16 @@ Use small design tweaks to improve clarity for users.
 ## Implementation Task
 Adjust text hierarchy, spacing, and colors for status readability.
 
+
+## Why This Change Matters
+- Today's change (Adjust text hierarchy, spacing, and colors for status readability.) directly supports the goal (Polish the room UI.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Adjust text hierarchy, spacing, and colors for status readability..
+- Use this reference to verify exact behavior while implementing Adjust text hierarchy, spacing, and colors for status readability..
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

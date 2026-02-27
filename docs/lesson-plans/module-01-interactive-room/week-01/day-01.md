@@ -14,6 +14,16 @@ Understand project entrypoints and how TypeScript files are bundled by Vite.
 ## Implementation Task
 Open src/main.ts and src/game/config.ts and trace startup from GameConfig to first scene.
 
+
+## Why This Change Matters
+- Today's change (Open src/main.ts and src/game/config.ts and trace startup from GameConfig to first scene.) directly supports the goal (Install tooling and run the starter app.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Open src/main.ts and src/game/config.ts and trace startup from GameConfig to first scene..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Scene concepts define lifecycle boundaries, which is critical for reliable scene start/stop/return flow.
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

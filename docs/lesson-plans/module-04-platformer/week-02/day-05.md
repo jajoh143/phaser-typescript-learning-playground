@@ -14,6 +14,16 @@ Improve naming and remove dead code.
 ## Implementation Task
 Rename unclear variables and delete unused helpers.
 
+
+## Why This Change Matters
+- Today's change (Rename unclear variables and delete unused helpers.) directly supports the goal (Demo and clean up code.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Rename unclear variables and delete unused helpers..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Rename unclear variables and delete unused helpers..
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

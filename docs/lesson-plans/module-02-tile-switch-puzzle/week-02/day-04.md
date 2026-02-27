@@ -14,6 +14,16 @@ Separate pure logic from scene rendering code.
 ## Implementation Task
 Move toggle/win/reset helpers into logic/puzzle.ts and keep scene focused on display/input.
 
+
+## Why This Change Matters
+- Today's change (Move toggle/win/reset helpers into logic/puzzle.ts and keep scene focused on display/input.) directly supports the goal (Refactor puzzle logic into logic folder.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Move toggle/win/reset helpers into logic/puzzle.ts and keep scene focused on display/input..
+- Splitting code by module keeps Move toggle/win/reset helpers into logic/puzzle.ts and keep scene focused on display/input. from coupling tightly to rendering code.
+- Use this reference to verify exact behavior while implementing Move toggle/win/reset helpers into logic/puzzle.ts and keep scene focused on display/input..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

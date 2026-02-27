@@ -14,6 +14,16 @@ Learn when constructor, preload, create, and update run.
 ## Implementation Task
 Add minimal comments and console logs to confirm lifecycle order in your module scene.
 
+
+## Why This Change Matters
+- Today's change (Add minimal comments and console logs to confirm lifecycle order in your module scene.) directly supports the goal (Understand Phaser scene lifecycle.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Use this reference to verify exact behavior while implementing Add minimal comments and console logs to confirm lifecycle order in your module scene..
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

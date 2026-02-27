@@ -14,6 +14,16 @@ Practice explaining code choices and outcomes.
 ## Implementation Task
 Record one short note: what changed, what was hardest, and what to improve next.
 
+
+## Why This Change Matters
+- Today's change (Record one short note: what changed, what was hardest, and what to improve next.) directly supports the goal (Demo and reflect on the module.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Record one short note: what changed, what was hardest, and what to improve next..
+- Use this reference to verify exact behavior while implementing Record one short note: what changed, what was hardest, and what to improve next..
+- Use this reference to verify exact behavior while implementing Record one short note: what changed, what was hardest, and what to improve next..
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

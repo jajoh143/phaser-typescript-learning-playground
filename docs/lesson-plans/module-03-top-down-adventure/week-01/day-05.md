@@ -14,6 +14,16 @@ Display live state updates clearly on screen.
 ## Implementation Task
 Render inventory count and objective text that updates when item collected.
 
+
+## Why This Change Matters
+- Today's change (Render inventory count and objective text that updates when item collected.) directly supports the goal (Show HUD objective and inventory.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Use this reference to verify exact behavior while implementing Render inventory count and objective text that updates when item collected..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

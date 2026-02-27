@@ -14,6 +14,16 @@ Build level layout with platforms and one danger zone.
 ## Implementation Task
 Add static platforms and a hazard that triggers failure.
 
+
+## Why This Change Matters
+- Today's change (Add static platforms and a hazard that triggers failure.) directly supports the goal (Create terrain and hazard.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Use this reference to verify exact behavior while implementing Add static platforms and a hazard that triggers failure..
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

@@ -14,6 +14,16 @@ Define clear level completion conditions.
 ## Implementation Task
 Create goal object and trigger win state when reached.
 
+
+## Why This Change Matters
+- Today's change (Create goal object and trigger win state when reached.) directly supports the goal (Add level goal and win logic.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Use this reference to verify exact behavior while implementing Create goal object and trigger win state when reached..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

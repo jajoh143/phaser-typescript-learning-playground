@@ -14,6 +14,16 @@ Trigger quest state changes from specific dialogue choices.
 ## Implementation Task
 When player accepts quest, set status to active and update UI.
 
+
+## Why This Change Matters
+- Today's change (When player accepts quest, set status to active and update UI.) directly supports the goal (Connect dialogue to quest updates.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Typed helper functions make When player accepts quest, set status to active and update UI. easier to test and refactor without scene regressions.
+- Use this reference to verify exact behavior while implementing When player accepts quest, set status to active and update UI..
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

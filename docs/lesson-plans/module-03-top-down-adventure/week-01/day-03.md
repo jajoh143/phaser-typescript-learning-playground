@@ -14,6 +14,16 @@ Use interfaces for consistent room and entity definitions.
 ## Implementation Task
 Create interfaces for PlayerState and ObstacleConfig and apply them in room config.
 
+
+## Why This Change Matters
+- Today's change (Create interfaces for PlayerState and ObstacleConfig and apply them in room config.) directly supports the goal (Define typed config models.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Create interfaces for PlayerState and ObstacleConfig and apply them in room config..
+- Use this reference to verify exact behavior while implementing Create interfaces for PlayerState and ObstacleConfig and apply them in room config..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

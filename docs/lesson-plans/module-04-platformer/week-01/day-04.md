@@ -14,6 +14,16 @@ Reset player state cleanly after failure.
 ## Implementation Task
 On hazard hit, move player to spawn and decrement lives.
 
+
+## Why This Change Matters
+- Today's change (On hazard hit, move player to spawn and decrement lives.) directly supports the goal (Implement respawn behavior.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing On hazard hit, move player to spawn and decrement lives..
+- Use this reference to verify exact behavior while implementing On hazard hit, move player to spawn and decrement lives..
+- Use this reference to verify exact behavior while implementing On hazard hit, move player to spawn and decrement lives..
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

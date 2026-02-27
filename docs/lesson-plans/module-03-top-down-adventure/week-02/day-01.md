@@ -14,6 +14,16 @@ Prepare scene transition flow without full map system.
 ## Implementation Task
 Trigger scene change when player enters a doorway zone.
 
+
+## Why This Change Matters
+- Today's change (Trigger scene change when player enters a doorway zone.) directly supports the goal (Add doorway transition placeholder.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Use this reference to verify exact behavior while implementing Trigger scene change when player enters a doorway zone..
+- Use this reference to verify exact behavior while implementing Trigger scene change when player enters a doorway zone..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

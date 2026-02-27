@@ -14,6 +14,16 @@ Persist progress across browser refreshes.
 ## Implementation Task
 Serialize gate progress to localStorage and load it on start.
 
+
+## Why This Change Matters
+- Today's change (Serialize gate progress to localStorage and load it on start.) directly supports the goal (Add localStorage save/load.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Persisted data must be validated after parsing; treat storage as untrusted input before applying state.
+- Serialize only the minimal progress payload and parse with fallback defaults to avoid corrupt-session crashes.
+- Typed helper functions make Serialize gate progress to localStorage and load it on start. easier to test and refactor without scene regressions.
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

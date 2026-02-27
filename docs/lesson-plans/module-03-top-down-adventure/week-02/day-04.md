@@ -14,6 +14,16 @@ Split complex update logic into small named functions.
 ## Implementation Task
 Extract handleMovement, handlePickup, and handleNpcInteraction methods.
 
+
+## Why This Change Matters
+- Today's change (Extract handleMovement, handlePickup, and handleNpcInteraction methods.) directly supports the goal (Refactor movement and interactions.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Extract handleMovement, handlePickup, and handleNpcInteraction methods..
+- Use this reference to verify exact behavior while implementing Extract handleMovement, handlePickup, and handleNpcInteraction methods..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

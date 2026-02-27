@@ -14,6 +14,16 @@ Find one confusing path and simplify it.
 ## Implementation Task
 Use debugger/breakpoints to inspect flow and remove unnecessary branches.
 
+
+## Why This Change Matters
+- Today's change (Use debugger/breakpoints to inspect flow and remove unnecessary branches.) directly supports the goal (Run bug-fix and simplification pass.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Use debugger/breakpoints to inspect flow and remove unnecessary branches..
+- Use this reference to verify exact behavior while implementing Use debugger/breakpoints to inspect flow and remove unnecessary branches..
+- Use this reference to verify exact behavior while implementing Use debugger/breakpoints to inspect flow and remove unnecessary branches..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

@@ -14,6 +14,16 @@ Translate input to horizontal velocity and jump impulse.
 ## Implementation Task
 Add left/right movement and single jump when on floor.
 
+
+## Why This Change Matters
+- Today's change (Add left/right movement and single jump when on floor.) directly supports the goal (Implement movement and jump.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Input docs encourage event-based wiring, reducing duplicated polling logic and missed edge cases.
+- Use this reference to verify exact behavior while implementing Add left/right movement and single jump when on floor..
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

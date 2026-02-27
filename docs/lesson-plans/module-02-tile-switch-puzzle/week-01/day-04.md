@@ -14,6 +14,16 @@ Keep visual representation synchronized with data.
 ## Implementation Task
 Draw each tile from grid data and rerender after each move.
 
+
+## Why This Change Matters
+- Today's change (Draw each tile from grid data and rerender after each move.) directly supports the goal (Render board state in Phaser.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Draw each tile from grid data and rerender after each move..
+- Use this reference to verify exact behavior while implementing Draw each tile from grid data and rerender after each move..
+- Use this reference to verify exact behavior while implementing Draw each tile from grid data and rerender after each move..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

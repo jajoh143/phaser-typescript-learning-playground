@@ -14,6 +14,16 @@ Disable input once game is complete.
 ## Implementation Task
 Show win message and block further tile changes until reset.
 
+
+## Why This Change Matters
+- Today's change (Show win message and block further tile changes until reset.) directly supports the goal (Handle solved state in UI.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Input docs encourage event-based wiring, reducing duplicated polling logic and missed edge cases.
+- Use this reference to verify exact behavior while implementing Show win message and block further tile changes until reset..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

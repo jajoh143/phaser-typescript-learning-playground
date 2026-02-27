@@ -14,6 +14,16 @@ Encapsulate movement behavior for reuse.
 ## Implementation Task
 Move input and velocity logic into a dedicated class.
 
+
+## Why This Change Matters
+- Today's change (Move input and velocity logic into a dedicated class.) directly supports the goal (Create reusable player controller class.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Move input and velocity logic into a dedicated class..
+- Use this reference to verify exact behavior while implementing Move input and velocity logic into a dedicated class..
+- Use this reference to verify exact behavior while implementing Move input and velocity logic into a dedicated class..
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

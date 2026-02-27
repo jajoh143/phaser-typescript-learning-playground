@@ -14,6 +14,16 @@ Represent overall progress in one typed object.
 ## Implementation Task
 Display puzzle/platform/quest booleans and final unlock readiness.
 
+
+## Why This Change Matters
+- Today's change (Display puzzle/platform/quest booleans and final unlock readiness.) directly supports the goal (Track combined gate progress.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Display puzzle/platform/quest booleans and final unlock readiness..
+- Use this reference to verify exact behavior while implementing Display puzzle/platform/quest booleans and final unlock readiness..
+- Use this reference to verify exact behavior while implementing Display puzzle/platform/quest booleans and final unlock readiness..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

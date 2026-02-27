@@ -14,6 +14,16 @@ Adjust feel using small iterative parameter changes.
 ## Implementation Task
 Update gravity/moveSpeed/jumpVelocity and note why.
 
+
+## Why This Change Matters
+- Today's change (Update gravity/moveSpeed/jumpVelocity and note why.) directly supports the goal (Tune physics constants.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Use `const` for stable references in today's task (Update gravity/moveSpeed/jumpVelocity and note why.) so only intended state changes remain mutable.
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

@@ -14,6 +14,16 @@ Improve game flow with clear entry and ending.
 ## Implementation Task
 Create title scene and completion scene linked to hub progression.
 
+
+## Why This Change Matters
+- Today's change (Create title scene and completion scene linked to hub progression.) directly supports the goal (Add start and completion scenes.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Scene docs emphasize where initialization ends and per-frame logic begins, reducing lifecycle bugs.
+- Use this reference to verify exact behavior while implementing Create title scene and completion scene linked to hub progression..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

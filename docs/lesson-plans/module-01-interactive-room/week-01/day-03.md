@@ -14,6 +14,16 @@ Use object type aliases and annotate state so intent is clear.
 ## Implementation Task
 Create or refine a RoomState type with at least two typed fields and use it in scene code.
 
+
+## Why This Change Matters
+- Today's change (Create or refine a RoomState type with at least two typed fields and use it in scene code.) directly supports the goal (Add explicit types to scene state.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Create or refine a RoomState type with at least two typed fields and use it in scene code..
+- Use this reference to verify exact behavior while implementing Create or refine a RoomState type with at least two typed fields and use it in scene code..
+- Use this reference to verify exact behavior while implementing Create or refine a RoomState type with at least two typed fields and use it in scene code..
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

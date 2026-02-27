@@ -14,6 +14,16 @@ Validate core loop behavior end-to-end.
 ## Implementation Task
 Verify move, collision, collect, and interact scenarios and fix one bug.
 
+
+## Why This Change Matters
+- Today's change (Verify move, collision, collect, and interact scenarios and fix one bug.) directly supports the goal (Run module demo checklist.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Verify move, collision, collect, and interact scenarios and fix one bug..
+- Use this reference to verify exact behavior while implementing Verify move, collision, collect, and interact scenarios and fix one bug..
+- Use this reference to verify exact behavior while implementing Verify move, collision, collect, and interact scenarios and fix one bug..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

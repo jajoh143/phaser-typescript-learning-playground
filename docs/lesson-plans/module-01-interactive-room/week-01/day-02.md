@@ -14,6 +14,16 @@ Use const/let correctly and keep function logic small and readable.
 ## Implementation Task
 Replace hardcoded text with constants and create one helper function for repeated label formatting.
 
+
+## Why This Change Matters
+- Today's change (Replace hardcoded text with constants and create one helper function for repeated label formatting.) directly supports the goal (Practice constants and simple functions in TS.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use `const` for stable references in today's task (Replace hardcoded text with constants and create one helper function for repeated label formatting.) so only intended state changes remain mutable.
+- Reserve `let` for truly changing values; this keeps update points explicit during gameplay events.
+- Use this reference to verify exact behavior while implementing Replace hardcoded text with constants and create one helper function for repeated label formatting..
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

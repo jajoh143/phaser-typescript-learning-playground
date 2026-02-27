@@ -14,6 +14,16 @@ Separate UI rendering from game state transitions.
 ## Implementation Task
 Move transition logic to logic/ and keep scene focused on rendering/input.
 
+
+## Why This Change Matters
+- Today's change (Move transition logic to logic/ and keep scene focused on rendering/input.) directly supports the goal (Refactor dialogue and quest logic files.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Splitting code by module keeps Move transition logic to logic/ and keep scene focused on rendering/input. from coupling tightly to rendering code.
+- Use this reference to verify exact behavior while implementing Move transition logic to logic/ and keep scene focused on rendering/input..
+- Use this reference to verify exact behavior while implementing Move transition logic to logic/ and keep scene focused on rendering/input..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

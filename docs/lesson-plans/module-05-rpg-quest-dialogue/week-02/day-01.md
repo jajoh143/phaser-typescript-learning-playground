@@ -14,6 +14,16 @@ Track item possession and completion checks.
 ## Implementation Task
 Add one collectible requirement and complete quest when returned.
 
+
+## Why This Change Matters
+- Today's change (Add one collectible requirement and complete quest when returned.) directly supports the goal (Add fetch quest objective.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Model repeated game data as arrays so Add one collectible requirement and complete quest when returned. can be iterated and rendered predictably.
+- Type narrowing helps branch logic stay safe when game state can be in multiple valid forms.
+- Use this reference to verify exact behavior while implementing Add one collectible requirement and complete quest when returned..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

@@ -14,6 +14,16 @@ Reflect player state in a simple HUD.
 ## Implementation Task
 Show current lives and update text on loss.
 
+
+## Why This Change Matters
+- Today's change (Show current lives and update text on loss.) directly supports the goal (Add lives counter UI.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for physics feel, collision states, and clear player feedback so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Show current lives and update text on loss..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+
 ## Starter Code Hints
 - Target files: src/modules/module-04-platformer/scenes/Module04PlatformerScene.ts and src/modules/module-04-platformer/logic/physics.ts.
 - Suggested function/class names: applyMovement(), respawnPlayer(), PlayerController.

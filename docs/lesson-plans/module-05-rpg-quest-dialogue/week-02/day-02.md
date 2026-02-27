@@ -14,6 +14,16 @@ Keep player informed with persistent status text.
 ## Implementation Task
 Render active/completed quest states in side panel UI.
 
+
+## Why This Change Matters
+- Today's change (Render active/completed quest states in side panel UI.) directly supports the goal (Create quest status panel.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Render active/completed quest states in side panel UI..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

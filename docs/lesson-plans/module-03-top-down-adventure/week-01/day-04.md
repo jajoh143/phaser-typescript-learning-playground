@@ -14,6 +14,16 @@ Manage inventory as typed string array state.
 ## Implementation Task
 Place one collectible and push its id into inventory when touched.
 
+
+## Why This Change Matters
+- Today's change (Place one collectible and push its id into inventory when touched.) directly supports the goal (Add collectible item and inventory.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Model repeated game data as arrays so Place one collectible and push its id into inventory when touched. can be iterated and rendered predictably.
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Model repeated game data as arrays so Place one collectible and push its id into inventory when touched. can be iterated and rendered predictably.
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

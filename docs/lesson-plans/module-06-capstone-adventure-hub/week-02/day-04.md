@@ -14,6 +14,16 @@ Tighten UX and text guidance for players.
 ## Implementation Task
 Improve instructions, spacing, and feedback for gate completion.
 
+
+## Why This Change Matters
+- Today's change (Improve instructions, spacing, and feedback for gate completion.) directly supports the goal (Final polish for readability and flow.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Improve instructions, spacing, and feedback for gate completion..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Improve instructions, spacing, and feedback for gate completion..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

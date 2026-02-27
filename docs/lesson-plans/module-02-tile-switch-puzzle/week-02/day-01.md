@@ -14,6 +14,16 @@ Write clear typed logic that returns a boolean.
 ## Implementation Task
 Create isSolved(grid) and use it after each move.
 
+
+## Why This Change Matters
+- Today's change (Create isSolved(grid) and use it after each move.) directly supports the goal (Implement win condition function.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Typed helper functions make Create isSolved(grid) and use it after each move. easier to test and refactor without scene regressions.
+- Use this reference to verify exact behavior while implementing Create isSolved(grid) and use it after each move..
+- Use this reference to verify exact behavior while implementing Create isSolved(grid) and use it after each move..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

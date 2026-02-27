@@ -14,6 +14,16 @@ Prevent player from leaving room and hitting obstacles.
 ## Implementation Task
 Clamp player movement and block overlap with obstacle rectangles.
 
+
+## Why This Change Matters
+- Today's change (Clamp player movement and block overlap with obstacle rectangles.) directly supports the goal (Implement bounds and collisions.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Arcade Physics docs explain collider/overlap responsibilities so movement and collision responsibilities stay clear.
+- Use this reference to verify exact behavior while implementing Clamp player movement and block overlap with obstacle rectangles..
+- Use this reference to verify exact behavior while implementing Clamp player movement and block overlap with obstacle rectangles..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

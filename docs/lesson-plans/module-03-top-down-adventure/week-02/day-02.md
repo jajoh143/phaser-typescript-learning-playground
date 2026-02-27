@@ -14,6 +14,16 @@ Make room layout data-driven.
 ## Implementation Task
 Move obstacle/NPC/item definitions into typed config arrays.
 
+
+## Why This Change Matters
+- Today's change (Move obstacle/NPC/item definitions into typed config arrays.) directly supports the goal (Drive room from config objects.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Move obstacle/NPC/item definitions into typed config arrays..
+- Serialize only the minimal progress payload and parse with fallback defaults to avoid corrupt-session crashes.
+- Use this reference to verify exact behavior while implementing Move obstacle/NPC/item definitions into typed config arrays..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

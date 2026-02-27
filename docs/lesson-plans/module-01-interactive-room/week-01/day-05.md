@@ -14,6 +14,16 @@ Use event callbacks to mutate state in a predictable way.
 ## Implementation Task
 Add a second interactive object and track both click counts independently.
 
+
+## Why This Change Matters
+- Today's change (Add a second interactive object and track both click counts independently.) directly supports the goal (Expand interactivity with another clickable object.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Input docs encourage event-based wiring, reducing duplicated polling logic and missed edge cases.
+- Use this reference to verify exact behavior while implementing Add a second interactive object and track both click counts independently..
+- Typed helper functions make Add a second interactive object and track both click counts independently. easier to test and refactor without scene regressions.
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().

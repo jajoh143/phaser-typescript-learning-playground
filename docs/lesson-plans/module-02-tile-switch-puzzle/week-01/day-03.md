@@ -14,6 +14,16 @@ Apply deterministic transformations to board state.
 ## Implementation Task
 When a tile is toggled, also toggle orthogonal neighbors within bounds.
 
+
+## Why This Change Matters
+- Today's change (When a tile is toggled, also toggle orthogonal neighbors within bounds.) directly supports the goal (Add neighbor toggle rules.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Model repeated game data as arrays so When a tile is toggled, also toggle orthogonal neighbors within bounds. can be iterated and rendered predictably.
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Type narrowing helps branch logic stay safe when game state can be in multiple valid forms.
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

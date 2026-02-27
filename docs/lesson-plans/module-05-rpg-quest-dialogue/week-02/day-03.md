@@ -14,6 +14,16 @@ Organize runtime state in one object for easier reasoning.
 ## Implementation Task
 Build a GameState object and read/update it from dialogue and quest flows.
 
+
+## Why This Change Matters
+- Today's change (Build a GameState object and read/update it from dialogue and quest flows.) directly supports the goal (Persist session state in memory.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for state transitions, branching flow, and UI readability so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Build a GameState object and read/update it from dialogue and quest flows..
+- Use this reference to verify exact behavior while implementing Build a GameState object and read/update it from dialogue and quest flows..
+- Use this reference to verify exact behavior while implementing Build a GameState object and read/update it from dialogue and quest flows..
+
 ## Starter Code Hints
 - Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
 - Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().

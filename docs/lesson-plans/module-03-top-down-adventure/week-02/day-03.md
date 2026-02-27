@@ -14,6 +14,16 @@ Implement interaction by distance and key press.
 ## Implementation Task
 Show dialogue text when near NPC and pressing interaction key.
 
+
+## Why This Change Matters
+- Today's change (Show dialogue text when near NPC and pressing interaction key.) directly supports the goal (Add one NPC interaction line.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for movement, collision, interaction flow, and HUD consistency so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Show dialogue text when near NPC and pressing interaction key..
+- Input docs encourage event-based wiring, reducing duplicated polling logic and missed edge cases.
+- Use this reference to verify exact behavior while implementing Show dialogue text when near NPC and pressing interaction key..
+
 ## Starter Code Hints
 - Target files: src/modules/module-03-top-down-adventure/scenes/Module03AdventureScene.ts and src/modules/module-03-top-down-adventure/logic/roomConfig.ts.
 - Suggested function names: handleMovement(), handleCollisions(), handleInteractions().

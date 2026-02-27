@@ -14,6 +14,16 @@ Practice reviewing structure, naming, and maintainability.
 ## Implementation Task
 Write one note on what became easier after refactoring.
 
+
+## Why This Change Matters
+- Today's change (Write one note on what became easier after refactoring.) directly supports the goal (Demo and evaluate refactor quality.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for grid-state correctness, deterministic updates, and visual sync so later features do not require large rewrites.
+
+## Documentation Takeaways
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Use this reference to verify exact behavior while implementing Write one note on what became easier after refactoring..
+- Use this reference to verify exact behavior while implementing Write one note on what became easier after refactoring..
+
 ## Starter Code Hints
 - Target files: src/modules/module-02-tile-switch-puzzle/scenes/Module02PuzzleScene.ts and src/modules/module-02-tile-switch-puzzle/logic/puzzle.ts.
 - Suggested function names: toggleTile(grid, row, col), isSolved(grid), createStarterGrid().

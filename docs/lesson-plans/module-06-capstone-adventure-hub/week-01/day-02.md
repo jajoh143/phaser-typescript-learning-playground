@@ -14,6 +14,16 @@ Reuse module-02 logic behind one capstone gate.
 ## Implementation Task
 Wire gate completion boolean to puzzle success callback.
 
+
+## Why This Change Matters
+- Today's change (Wire gate completion boolean to puzzle success callback.) directly supports the goal (Integrate puzzle gate.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for scene orchestration, progress flow, and multi-system integration so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Splitting code by module keeps Wire gate completion boolean to puzzle success callback. from coupling tightly to rendering code.
+- Use this reference to verify exact behavior while implementing Wire gate completion boolean to puzzle success callback..
+- Use this reference to verify exact behavior while implementing Wire gate completion boolean to puzzle success callback..
+
 ## Starter Code Hints
 - Target files: src/modules/module-06-capstone-adventure-hub/scenes/Module06CapstoneScene.ts and src/modules/module-06-capstone-adventure-hub/logic/progress.ts.
 - Suggested function names: setGateComplete(), isHubUnlocked(), saveProgress(), loadProgress().

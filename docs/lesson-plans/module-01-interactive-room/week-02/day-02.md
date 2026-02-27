@@ -14,6 +14,16 @@ Use if/else and comparison operators to reveal hidden content.
 ## Implementation Task
 Reveal a hint line only after total clicks exceed a threshold.
 
+
+## Why This Change Matters
+- Today's change (Reveal a hint line only after total clicks exceed a threshold.) directly supports the goal (Gate content with conditionals.) by making the behavior explicit in code and visible at runtime.
+- This step builds the foundation for input events, scene state, and UI feedback loops so later features do not require large rewrites.
+
+## Documentation Takeaways
+- Use this reference to verify exact behavior while implementing Reveal a hint line only after total clicks exceed a threshold..
+- UI/text docs reinforce that visual hierarchy is part of gameplay clarity, not optional polish.
+- Type narrowing helps branch logic stay safe when game state can be in multiple valid forms.
+
 ## Starter Code Hints
 - Target files: src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts and src/modules/module-01-interactive-room/logic/helpers.ts.
 - Suggested function names: refreshStatus(), buildLabelText(), createInitialRoomState().
