@@ -1,16 +1,44 @@
 # Module 5: Quest + Dialogue RPG - week-01 - day-03
 
 ## Session Goal
-Add branching dialogue choices with state flags.
+Add branching dialogue paths.
 
-## 30-Minute Plan
-- 10 min: Read existing relevant code and identify one small change.
-- 15 min: Implement the targeted change for today.
-- 5 min: Run, verify behavior, and write one quick note on what you learned.
+## Concept Primer
+Update state based on selected choices.
 
-## Deliverable
-- One working code update committed to your branch.
-- One short reflection note in commit message or local notes.
+## What To Build (30 Minutes)
+- 5 min: Read today's goal and inspect related files.
+- 20 min: Implement the change described below.
+- 5 min: Run, verify, and write one reflection note.
+
+## Implementation Task
+Implement at least two dialogue branches and next-node selection.
+
+## Starter Code Hints
+- Target files: src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts and src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts.
+- Suggested function names: advanceDialogue(), applyChoice(), updateQuestStatus().
+- Keep transitions in logic files and display/input handling in the scene.
+
+## Success Criteria
+- Code compiles and runs.
+- Behavior change is visible in-game.
+- One commit message summarizes what changed and why.
+
+## Checklist
+- [ ] I reviewed the target files before coding.
+- [ ] I implemented the core task for today.
+- [ ] I ran the game and verified the behavior visually.
+- [ ] I wrote one short note about what I learned.
+- [ ] I made a commit on my working branch.
+
+## Documentation
+- [TS Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
+- [MDN switch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+- [Finite State Machines](https://gameprogrammingpatterns.com/state.html)
+
+## Common Mistakes
+- Dialogue ids and choice targets not matching, causing dead-end branches.
+- Quest state changes not refreshing UI text after transitions.
 
 ## Stretch (Optional)
-- Add one small polish improvement if time remains.
+- Add one small polish improvement while preserving readability.
