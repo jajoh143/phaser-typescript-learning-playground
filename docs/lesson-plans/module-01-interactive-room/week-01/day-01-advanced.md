@@ -9,7 +9,6 @@ Core Phaser object creation, interactivity, tweens, depth, and scene events.
 ## Secondary Task (Phaser-First)
 Create a reusable factory function for clickable objects instead of building each object inline.
 
-
 ## Why This Phaser Change Matters
 - This Phaser task (Create a reusable factory function for clickable objects instead of building each object inline.) targets the engine competency for today: Core Phaser object creation, interactivity, tweens, depth, and scene events..
 - Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.

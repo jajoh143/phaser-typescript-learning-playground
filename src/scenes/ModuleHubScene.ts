@@ -33,10 +33,15 @@ export class ModuleHubScene extends Phaser.Scene {
         fontSize: "24px",
         color: "#93c5fd"
       });
+    });
 
-      this.input.keyboard?.on(`keydown-${index + 1}`, () => {
-        this.scene.start(module.key);
-      });
+    this.input.keyboard?.on("keydown", (event: KeyboardEvent) => {
+      const index = Number(event.key) - 1;
+      if (Number.isNaN(index) || index < 0 || index >= MODULES.length) {
+        return;
+      }
+
+      this.scene.start(MODULES[index].key);
     });
   }
 }
