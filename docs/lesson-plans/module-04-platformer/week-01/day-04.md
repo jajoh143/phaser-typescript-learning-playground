@@ -50,5 +50,8 @@ On hazard hit, move player to spawn and decrement lives.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+The `physicsDefaults` object in `physics.ts` is a plain TypeScript constant — Phaser does not read it automatically. Key concept: You must pass these values explicitly to Phaser APIs (e.g. `body.setVelocityX(physicsDefaults.moveSpeed)`) — they have no effect on the simulation until you do. Key concept: Tuning physics constants is an iterative process — small changes (e.g. changing `gravityY` from 900 to 1100) have a large visible impact on player feel, so change one value at a time and run the game between each change.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

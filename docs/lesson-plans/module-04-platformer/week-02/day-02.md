@@ -50,5 +50,8 @@ Move input and velocity logic into a dedicated class.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+A TypeScript class can encapsulate Phaser game logic without extending any Phaser classes. Key concept: A `PlayerController` class that takes a `Phaser.Physics.Arcade.Sprite` reference in its constructor manages its own movement and jump logic — the scene only calls `controller.update(cursors)` each frame. Key concept: `private` class fields in TypeScript hide implementation details from the scene, just like Phaser's own source uses private fields to protect internal state.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

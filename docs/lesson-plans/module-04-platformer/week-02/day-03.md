@@ -50,5 +50,8 @@ Spawn collectibles and update score when collected.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+Phaser Groups manage collections of GameObjects and enable efficient batch operations like physics overlap detection across all members at once. Key concept: `group.getChildren()` returns an array you can iterate to inspect or modify individual members. Key concept: `this.physics.add.group()` gives all group members physics bodies automatically — each member gets its own `ArcadeBody` without a separate `physics.add.sprite()` call.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

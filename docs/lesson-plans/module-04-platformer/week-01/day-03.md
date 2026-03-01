@@ -50,5 +50,8 @@ Add static platforms and a hazard that triggers failure.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+A `StaticBody` in Phaser Arcade Physics has zero velocity and infinite mass — it never moves regardless of what collides with it. Key concept: `this.physics.add.staticGroup()` creates a group of static bodies ideal for platforms and walls that must stay fixed in the world. Key concept: `this.physics.add.collider(a, b)` makes `a` and `b` stop when they physically overlap — without this call, a physics sprite falls straight through a static group even if they visually intersect.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

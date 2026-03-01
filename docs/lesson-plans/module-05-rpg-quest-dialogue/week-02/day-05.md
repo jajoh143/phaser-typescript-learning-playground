@@ -50,5 +50,8 @@ Walk through accept/decline/complete paths and log one bug or polish item.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+A complete quest flow in Phaser: player interacts → dialogue tree runs → quest state updates → HUD refreshes → completion event emits. Each step is a small, testable piece that composes into the full flow. `this.scene.start('module-hub')` can pass quest results back as scene data via its second argument: `this.scene.start('module-hub', { completedQuests: ['lantern-quest'] })`.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

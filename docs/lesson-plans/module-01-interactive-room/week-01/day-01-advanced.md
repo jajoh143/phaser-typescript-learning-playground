@@ -1,42 +1,72 @@
-# Advanced Phaser Track - week-01 - day-01
+# Advanced Phaser Track — Interactive Room — Week 1 — Day 1: Scene Architecture
 
 ## Audience
-Developer with strong JavaScript/TypeScript skills and beginner Phaser knowledge.
+Senior JavaScript/TypeScript developer learning Phaser. This lesson is fully self-contained — no need to reference the beginner track.
 
-## Phaser Learning Focus
-Core Phaser object creation, interactivity, tweens, depth, and scene events.
+## Session Goal
+Understand how Phaser's scene system works internally: the `sys` object, lifecycle event hooks, and how to observe scene state transitions at runtime.
 
-## Secondary Task (Phaser-First)
-Create a reusable factory function for clickable objects instead of building each object inline.
+## Phaser System Focus
+Scene System (`Phaser.Scene`, `scene.sys`, `scene.events` lifecycle hooks)
 
-## Why This Phaser Change Matters
-- This Phaser task (Create a reusable factory function for clickable objects instead of building each object inline.) targets the engine competency for today: Core Phaser object creation, interactivity, tweens, depth, and scene events..
-- Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.
+## What To Build (30 Minutes)
+- 5 min: Read this lesson and inspect `src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts`.
+- 20 min: Implement the task below.
+- 5 min: Run the game, verify the behavior visually, and write one observation note.
 
-## Phaser Documentation Takeaways
-- Phaser input concepts clarify event-driven handlers (`pointerdown`, keyboard) so interaction code stays predictable.
-- Check Phaser API signatures while implementing Create a reusable factory function for clickable objects instead of building each object inline. to avoid incorrect assumptions about method behavior.
-- Use Phaser examples as implementation references for Create a reusable factory function for clickable objects instead of building each object inline., then adapt them to your module architecture.
+## Implementation Task
+Add `init()`, `preload()`, and `shutdown()` lifecycle methods to `Module01RoomScene`. In each method, log a message that includes `this.scene.key` and the lifecycle name. In `create()`, listen to `this.events.on('shutdown', ...)` to observe how scene events fire. Add a visible on-screen text element showing the current scene key.
+
+## Target Files
+- `src/modules/module-01-interactive-room/scenes/Module01RoomScene.ts`
+
+## Why This Phaser Pattern Matters
+Every Phaser scene has a `sys` object managing its lifecycle, plugins, and event system. The lifecycle fires in a guaranteed order: `init → preload → create → update (loop) → shutdown → destroy`. Understanding this prevents bugs like trying to access GameObjects in `init()` before they exist, or forgetting to clean up listeners in `shutdown()` which causes memory leaks when the scene restarts. `this.events` is the scene-level emitter where lifecycle events are broadcast — it is distinct from `this.sys.events`.
 
 ## Specific Change Example
 ```ts
-const button = this.add.rectangle(x, y, 180, 60, 0x2563eb).setInteractive();
-button.on("pointerover", () => this.tweens.add({ targets: button, scale: 1.05, duration: 100 }));
-button.on("pointerout", () => this.tweens.add({ targets: button, scale: 1.0, duration: 100 }));
-button.setDepth(10);
+init(): void {
+  console.log(`[${this.scene.key}] init fired`);
+  // Safe to read passed data here, but no GameObjects exist yet.
+}
+
+preload(): void {
+  console.log(`[${this.scene.key}] preload fired`);
+  // Assets would be queued here.
+}
+
+create(): void {
+  this.events.on('shutdown', () =>
+    console.log(`[${this.scene.key}] shutdown event fired`)
+  );
+
+  this.add.text(20, 20, `Scene: ${this.scene.key}`, {
+    fontFamily: 'monospace', fontSize: '28px', color: '#f9fafb'
+  });
+  // ... rest of create
+}
+
+shutdown(): void {
+  console.log(`[${this.scene.key}] shutdown method fired`);
+}
 ```
 
-## What To Observe In Runtime
-- Input behavior: pointer/keyboard actions produce predictable scene updates.
-- Visual feedback: UI/game objects clearly communicate state changes.
-- Scene architecture: game logic remains readable as Phaser-specific features are added.
+## What To Observe At Runtime
+- Browser console shows `init → preload → create` in order when the scene first loads.
+- Pressing H to navigate away triggers `shutdown method fired` in the console.
+- Returning to the scene repeats the full lifecycle sequence — confirming the scene re-initializes cleanly.
 
 ## Done Criteria
-- The base lesson still works after advanced changes.
-- The advanced feature is visible in-game and can be demonstrated in under 1 minute.
-- Notes include one Phaser concept learned and one Phaser API used.
+- [ ] `init()`, `preload()`, and `shutdown()` methods are present and log their lifecycle name + scene key.
+- [ ] `this.events.on('shutdown', ...)` listener is wired and fires in the console on scene exit.
+- [ ] Scene key is displayed as visible on-screen text.
+- [ ] Committed with a message naming `scene.events` as the Phaser API used.
+
+## Common Phaser Pitfalls
+- Calling `this.add.*` inside `init()` — GameObjects don't exist yet. `init()` is for reading passed data only.
+- Confusing `this.events` (scene-level, for your code) with `this.sys.events` (system-level, for Phaser internals). Use `this.events` for your own lifecycle hooks.
 
 ## References
-- [Phaser Concepts](https://docs.phaser.io/phaser/concepts)
-- [Phaser API Docs](https://newdocs.phaser.io/docs/3.80.0)
-- [Phaser Examples](https://phaser.io/examples)
+- [Phaser Concepts — Scenes](https://docs.phaser.io/phaser/concepts/scenes)
+- [Phaser.Scene API](https://newdocs.phaser.io/docs/3.80.0/Phaser.Scene)
+- [Phaser Example — Scene Events](https://phaser.io/examples/v3/view/scenes/scene-events)

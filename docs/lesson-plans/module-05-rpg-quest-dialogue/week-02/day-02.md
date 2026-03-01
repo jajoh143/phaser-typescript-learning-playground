@@ -50,5 +50,8 @@ Render active/completed quest states in side panel UI.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+Quest status display is a Text GameObject updated when quest state changes. `text.setText()` is an O(1) update — no need to destroy and recreate the Text object to change its content. Showing or hiding a status panel uses `panel.setVisible(bool)`, which toggles render and input without removing the object from the scene.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

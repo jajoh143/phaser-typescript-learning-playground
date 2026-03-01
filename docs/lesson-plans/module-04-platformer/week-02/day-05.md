@@ -50,5 +50,8 @@ Rename unclear variables and delete unused helpers.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+Code cleanup in Phaser means separating magic numbers into named constants and grouping related logic into helper methods or classes. Key concept: Magic numbers like `220` for speed should be named constants (`MOVE_SPEED = 220`) — the name communicates intent and makes every future change a single-source edit. Key concept: A clean `update()` loop — ideally under 20 lines — is a sign of well-structured scene code where responsibilities are delegated to controllers, helpers, and event callbacks rather than written inline.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

@@ -1,43 +1,79 @@
-# Advanced Phaser Track - week-01 - day-03
+# Advanced Phaser Track — Quest + Dialogue RPG — Week 1 — Day 3: Interactive Text Buttons with Hover States
 
 ## Audience
-Developer with strong JavaScript/TypeScript skills and beginner Phaser knowledge.
+Senior JavaScript/TypeScript developer learning Phaser. This lesson is fully self-contained — no need to reference the beginner track.
 
-## Phaser Learning Focus
-UI composition with containers/text, interaction flow, and event-driven state updates.
+## Session Goal
+Generate clickable choice buttons as Phaser Text GameObjects, implement visual hover feedback by swapping text styles, wire each button to a choice handler, and correctly destroy old buttons before creating new ones when the dialogue advances.
 
-## Secondary Task (Phaser-First)
-Animate dialogue transitions (typewriter or fade) between nodes.
+## Phaser System Focus
+`Phaser.GameObjects.Text` — `setInteractive()`, `pointerover`/`pointerout` style events, `destroy()` for per-node button cleanup.
 
+## What To Build (30 Minutes)
+- 5 min: Read this lesson and inspect `Module05RpgScene.ts`.
+- 20 min: Implement the task below.
+- 5 min: Run the game, verify the behavior visually, and write one observation note.
 
-## Why This Phaser Change Matters
-- This Phaser task (Animate dialogue transitions (typewriter or fade) between nodes.) targets the engine competency for today: UI composition with containers/text, interaction flow, and event-driven state updates..
-- Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.
+## Implementation Task
+Add a `renderChoices(node: DialogueNode)` method to the scene that dynamically creates one Text button per choice in the current dialogue node:
 
-## Phaser Documentation Takeaways
-- Scene concepts define lifecycle boundaries, which is critical for reliable scene start/stop/return flow.
-- Check Phaser API signatures while implementing Animate dialogue transitions (typewriter or fade) between nodes. to avoid incorrect assumptions about method behavior.
-- Use Phaser examples as implementation references for Animate dialogue transitions (typewriter or fade) between nodes., then adapt them to your module architecture.
+1. Keep a `private choiceButtons: Phaser.GameObjects.Text[] = []` array on the scene class.
+2. At the start of `renderChoices`, call `button.destroy()` on every item in `choiceButtons`, then clear the array — this prevents stale buttons from accumulating across nodes.
+3. For each `choice` in `node.choices`, create a Text at `(60, 520 + index * 40)` with the choice label, color `#a5b4fc`, monospace 16px.
+4. Call `button.setInteractive()` on each Text (no size arg needed — Text auto-sizes its hit area).
+5. On `pointerover`: call `button.setStyle({ color: '#f59e0b' })`.
+6. On `pointerout`: call `button.setStyle({ color: '#a5b4fc' })`.
+7. On `pointerdown`: call your `applyChoice(choice)` handler (stub it as `console.log(choice.targetId)` for now).
+8. Push each button into `choiceButtons`.
+
+Call `renderChoices(introDialogue)` at the end of `create()`.
+
+## Target Files
+- `src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts`
+- `src/modules/module-05-rpg-quest-dialogue/logic/dialogue.ts`
+
+## Why This Phaser Pattern Matters
+Phaser's input system attaches directly to individual GameObjects — there is no separate DOM button layer. `Text.setInteractive()` uses the text's auto-computed bounding box as the hit area, which is exactly what you want for word-sized buttons. Calling `destroy()` removes the object from the scene's display list, the input manager, and the update loop in a single step — skipping this before spawning replacements leaves orphaned objects that continue intercepting clicks.
 
 ## Specific Change Example
 ```ts
-const panel = this.add.container(20, 360);
-const bg = this.add.rectangle(0, 0, 920, 150, 0x111827).setOrigin(0, 0);
-const line = this.add.text(16, 14, currentNode.text, textStyle);
-panel.add([bg, line]);
+private choiceButtons: Phaser.GameObjects.Text[] = [];
+
+private renderChoices(node: DialogueNode): void {
+  for (const btn of this.choiceButtons) btn.destroy();
+  this.choiceButtons = [];
+
+  node.choices.forEach((choice, i) => {
+    const btn = this.add.text(60, 520 + i * 40, `> ${choice.label}`, {
+      fontFamily: 'monospace',
+      fontSize: '16px',
+      color: '#a5b4fc',
+    });
+    btn.setInteractive();
+    btn.on('pointerover', () => btn.setStyle({ color: '#f59e0b' }));
+    btn.on('pointerout',  () => btn.setStyle({ color: '#a5b4fc' }));
+    btn.on('pointerdown', () => console.log(choice.targetId));
+    this.choiceButtons.push(btn);
+  });
+}
 ```
 
-## What To Observe In Runtime
-- Input behavior: pointer/keyboard actions produce predictable scene updates.
-- Visual feedback: UI/game objects clearly communicate state changes.
-- Scene architecture: game logic remains readable as Phaser-specific features are added.
+## What To Observe At Runtime
+- Hovering over a choice label turns it amber; moving off restores the indigo color — no pointer style set on the canvas cursor.
+- Clicking a choice logs its `targetId` string in DevTools.
+- If you call `renderChoices` a second time (e.g., via a keyboard shortcut), the old buttons disappear and new ones appear — no stacking of invisible click zones.
 
 ## Done Criteria
-- The base lesson still works after advanced changes.
-- The advanced feature is visible in-game and can be demonstrated in under 1 minute.
-- Notes include one Phaser concept learned and one Phaser API used.
+- [ ] `choiceButtons` array is cleared with `destroy()` before each `renderChoices` call.
+- [ ] Each Text button has `pointerover` / `pointerout` handlers that swap the color style.
+- [ ] `pointerdown` fires a handler (even if stubbed) — confirmed in DevTools.
+- [ ] Committed naming the Phaser API used (`setInteractive`, `setStyle`, `destroy`).
+
+## Common Phaser Pitfalls
+- Calling `setStyle` with a partial style object replaces only the specified keys — but forgetting to call `setStyle` and instead mutating `button.style.color` directly has no visual effect because Phaser tracks style through its own internal object.
+- Using `button.setVisible(false)` instead of `button.destroy()` to clean up: the button is hidden but still intercepts pointer events, causing phantom clicks on invisible targets.
 
 ## References
-- [Phaser Concepts](https://docs.phaser.io/phaser/concepts)
-- [Phaser API Docs](https://newdocs.phaser.io/docs/3.80.0)
-- [Phaser Examples](https://phaser.io/examples)
+- [Phaser Text Input Events](https://docs.phaser.io/phaser/concepts/input/interactive-gameobjects)
+- [Text API — setStyle](https://newdocs.phaser.io/docs/3.80.0/Phaser.GameObjects.Text#setStyle)
+- [GameObject destroy](https://newdocs.phaser.io/docs/3.80.0/Phaser.GameObjects.GameObject#destroy)

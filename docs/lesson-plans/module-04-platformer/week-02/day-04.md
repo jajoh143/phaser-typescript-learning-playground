@@ -50,5 +50,8 @@ Show current lives and update text on loss.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+A lives counter is state — a number you decrement on hazard hit and display via a Text object. Key concept: Phaser has no built-in "lives" system; you build it with a class property (`private lives = 3`) and a Text GameObject that calls `setText()` whenever the value changes. Key concept: `scene.restart()` resets all scene-level state, giving a clean game-over reset at the cost of re-running the full `create()` cycle — acceptable for simple resets but not for preserving cross-session data.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

@@ -1,43 +1,93 @@
-# Advanced Phaser Track - week-02 - day-03
+# Advanced Phaser Track — Quest + Dialogue RPG — Week 2 — Day 3: Game Registry for Cross-Scene State
 
 ## Audience
-Developer with strong JavaScript/TypeScript skills and beginner Phaser knowledge.
+Senior JavaScript/TypeScript developer learning Phaser. This lesson is fully self-contained — no need to reference the beginner track.
 
-## Phaser Learning Focus
-UI composition with containers/text, interaction flow, and event-driven state updates.
+## Session Goal
+Store quest progress in `this.game.registry` so the data survives scene transitions, read it back on re-entry, and subscribe to the registry's change event to reactively update HUD text when the registry value changes from any scene.
 
-## Secondary Task (Phaser-First)
-Centralize runtime state and route updates through scene events.
+## Phaser System Focus
+`Phaser.Data.DataManager` via `this.game.registry` — `set`, `get`, `registry.events.on('changedata-[key]', handler)`.
 
+## What To Build (30 Minutes)
+- 5 min: Read this lesson and inspect `Module05RpgScene.ts`.
+- 20 min: Implement the task below.
+- 5 min: Run the game, verify the behavior visually, and write one observation note.
 
-## Why This Phaser Change Matters
-- This Phaser task (Centralize runtime state and route updates through scene events.) targets the engine competency for today: UI composition with containers/text, interaction flow, and event-driven state updates..
-- Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.
+## Implementation Task
+Wire quest progress to the game registry:
 
-## Phaser Documentation Takeaways
-- Scene concepts define lifecycle boundaries, which is critical for reliable scene start/stop/return flow.
-- Check Phaser API signatures while implementing Centralize runtime state and route updates through scene events. to avoid incorrect assumptions about method behavior.
-- Use Phaser examples as implementation references for Centralize runtime state and route updates through scene events., then adapt them to your module architecture.
+1. In `create()`, initialise the registry key if it does not already exist:
+   ```ts
+   if (!this.game.registry.has('questProgress')) {
+     this.game.registry.set('questProgress', { active: [] as string[], complete: [] as string[] });
+   }
+   ```
+2. Add a HUD Text object at `(20, 60)` that reads the initial value:
+   ```ts
+   const qp = this.game.registry.get('questProgress');
+   this.questHud = this.add.text(20, 60, `Active: ${qp.active.length}`, { ... });
+   ```
+3. Subscribe to registry change events for this key:
+   ```ts
+   this.game.registry.events.on('changedata-questProgress', this.onQuestProgressChanged, this);
+   ```
+4. Implement `onQuestProgressChanged(parent: unknown, value: { active: string[]; complete: string[] })` — it calls `this.questHud.setText(...)` with the updated counts.
+5. When the dialogue panel is clicked, simulate a quest accept by pushing `'lantern-quest'` into the registry value and re-setting it:
+   ```ts
+   const qp = this.game.registry.get('questProgress');
+   qp.active.push('lantern-quest');
+   this.game.registry.set('questProgress', qp);
+   ```
+
+## Target Files
+- `src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts`
+
+## Why This Phaser Pattern Matters
+`this.game.registry` is a `DataManager` attached to the `Game` instance — it persists across all scene starts, stops, and restarts. A scene-level property (`private questState`) is reset every time the scene restarts. The registry's `changedata-[key]` event fires on any `set` call for that key from any scene, making it the correct bus for game-wide state that multiple scenes need to observe simultaneously — for example, a module hub scene updating a quest tracker badge when this scene completes a quest.
 
 ## Specific Change Example
 ```ts
-const panel = this.add.container(20, 360);
-const bg = this.add.rectangle(0, 0, 920, 150, 0x111827).setOrigin(0, 0);
-const line = this.add.text(16, 14, currentNode.text, textStyle);
-panel.add([bg, line]);
+// Init once in create()
+if (!this.game.registry.has('questProgress')) {
+  this.game.registry.set('questProgress', { active: [] as string[], complete: [] as string[] });
+}
+
+// Subscribe
+this.game.registry.events.on('changedata-questProgress', this.onQuestProgressChanged, this);
+
+// Reactive handler
+private onQuestProgressChanged(
+  _parent: unknown,
+  value: { active: string[]; complete: string[] }
+): void {
+  this.questHud.setText(`Active: ${value.active.length}  Complete: ${value.complete.length}`);
+}
+
+// Simulate accept on click
+panel.on('pointerdown', () => {
+  const qp = this.game.registry.get<{ active: string[]; complete: string[] }>('questProgress');
+  qp.active.push('lantern-quest');
+  this.game.registry.set('questProgress', qp);
+});
 ```
 
-## What To Observe In Runtime
-- Input behavior: pointer/keyboard actions produce predictable scene updates.
-- Visual feedback: UI/game objects clearly communicate state changes.
-- Scene architecture: game logic remains readable as Phaser-specific features are added.
+## What To Observe At Runtime
+- On first load the HUD shows `Active: 0`. Clicking the panel updates it to `Active: 1` without any direct call to `questHud.setText` in the click handler.
+- Restarting the scene (press H, return) shows `Active: 1` on re-entry — confirming the registry outlives the scene.
+- The `changedata-questProgress` event fires even if you call `registry.set` from the browser console: `scene.game.registry.set('questProgress', { active: ['x'], complete: [] })`.
 
 ## Done Criteria
-- The base lesson still works after advanced changes.
-- The advanced feature is visible in-game and can be demonstrated in under 1 minute.
-- Notes include one Phaser concept learned and one Phaser API used.
+- [ ] Registry is initialised with a guard (`registry.has`) to avoid overwriting on scene restart.
+- [ ] `registry.events.on('changedata-questProgress', ...)` is subscribed with `this` as context.
+- [ ] HUD text updates reactively on registry change — no direct `setText` call in the click handler.
+- [ ] Committed naming the Phaser API used (`game.registry`, `changedata-[key]`).
+
+## Common Phaser Pitfalls
+- Mutating the object returned by `registry.get` without calling `registry.set` again: the mutation happens in place but the `changedata` event is never fired because Phaser only dispatches on explicit `set` calls.
+- Subscribing to `registry.events.on` without removing the listener on scene shutdown: the game registry outlives scenes, so the listener will fire in later sessions even after this scene is gone, referencing a destroyed `questHud` object.
 
 ## References
-- [Phaser Concepts](https://docs.phaser.io/phaser/concepts)
-- [Phaser API Docs](https://newdocs.phaser.io/docs/3.80.0)
-- [Phaser Examples](https://phaser.io/examples)
+- [Phaser Data Manager](https://docs.phaser.io/phaser/concepts/data-manager)
+- [Game Registry API](https://newdocs.phaser.io/docs/3.80.0/Phaser.Game#registry)
+- [DataManager events](https://newdocs.phaser.io/docs/3.80.0/Phaser.Data.Events)

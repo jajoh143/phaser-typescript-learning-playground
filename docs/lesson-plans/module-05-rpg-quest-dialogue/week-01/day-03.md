@@ -50,5 +50,8 @@ Implement at least two dialogue branches and next-node selection.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+Phaser's input system can attach events to any GameObject that calls `setInteractive()`. Choice buttons are just Text GameObjects registered as interactive — no HTML buttons needed. Remove old choice buttons with `button.destroy()` before creating new ones when advancing dialogue; otherwise stale buttons remain in the scene's input manager and continue intercepting clicks invisibly.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

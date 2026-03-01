@@ -50,5 +50,8 @@ Create UI panel showing NPC line and current choice prompt.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+Phaser `Text` GameObjects render using the Canvas 2D API under the hood. `wordWrap.width` tells Phaser to break lines at that pixel width — it calculates break points based on font metrics, not character count. `text.height` reflects the rendered height including all wrapped lines and can be read immediately after `this.add.text(...)` to drive dynamic panel sizing.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.
