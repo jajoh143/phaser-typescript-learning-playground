@@ -50,5 +50,8 @@ Create goal object and trigger win state when reached.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+A "win state" in a Phaser platformer typically means reaching a goal object or zone. Key concept: Use `this.physics.add.overlap(player, goal, onWin)` to detect when the player reaches the flag — overlap fires the callback without physically blocking the player, which is the correct behavior for a goal zone. Key concept: On win, call `this.input.keyboard.removeAllListeners()` to prevent further movement input from firing after the win condition is triggered.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

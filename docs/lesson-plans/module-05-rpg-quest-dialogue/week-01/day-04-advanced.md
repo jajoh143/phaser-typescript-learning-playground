@@ -1,43 +1,86 @@
-# Advanced Phaser Track - week-01 - day-04
+# Advanced Phaser Track — Quest + Dialogue RPG — Week 1 — Day 4: State Machine in a Scene
 
 ## Audience
-Developer with strong JavaScript/TypeScript skills and beginner Phaser knowledge.
+Senior JavaScript/TypeScript developer learning Phaser. This lesson is fully self-contained — no need to reference the beginner track.
 
-## Phaser Learning Focus
-UI composition with containers/text, interaction flow, and event-driven state updates.
+## Session Goal
+Implement a minimal finite state machine directly in `Module05RpgScene` using a `const enum`, a private state field, and a `transition()` method that validates allowed moves and calls the appropriate enter function.
 
-## Secondary Task (Phaser-First)
-Emit quest state events and subscribe UI to those events.
+## Phaser System Focus
+Scene-level state management — TypeScript `const enum` for zero-cost state labels, guard-clause transitions, and per-state enter functions that update Phaser display objects.
 
+## What To Build (30 Minutes)
+- 5 min: Read this lesson and inspect `Module05RpgScene.ts`.
+- 20 min: Implement the task below.
+- 5 min: Run the game, verify the behavior visually, and write one observation note.
 
-## Why This Phaser Change Matters
-- This Phaser task (Emit quest state events and subscribe UI to those events.) targets the engine competency for today: UI composition with containers/text, interaction flow, and event-driven state updates..
-- Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.
+## Implementation Task
+Add a state machine to `Module05RpgScene`:
 
-## Phaser Documentation Takeaways
-- Phaser concepts provide the engine mental model needed to choose the right system (scene/input/physics/UI) for each change.
-- Check Phaser API signatures while implementing Emit quest state events and subscribe UI to those events. to avoid incorrect assumptions about method behavior.
-- Use Phaser examples as implementation references for Emit quest state events and subscribe UI to those events., then adapt them to your module architecture.
+1. Declare `const enum DialogueState { Idle, Active, AwaitingChoice, Complete }` at the top of the file (outside the class).
+2. Add `private state: DialogueState = DialogueState.Idle` to the class.
+3. Add a `private transition(next: DialogueState): void` method. Inside it, define a `const allowed` map of valid `current → next[]` pairs. If `next` is not in the allowed set for `this.state`, log a warning and return. Otherwise set `this.state = next` and call a corresponding enter function.
+4. Implement four enter functions — `enterIdle`, `enterActive`, `enterAwaitingChoice`, `enterComplete` — each as a stub that logs its name for now.
+5. In `create()`, call `this.transition(DialogueState.Active)` immediately after building the dialogue panel, so the machine starts in Active on scene creation.
+6. Wire the dialogue panel's `pointerdown` handler (from Day 1) to call `this.transition(DialogueState.AwaitingChoice)`.
+
+## Target Files
+- `src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts`
+
+## Why This Phaser Pattern Matters
+Phaser scenes have their own lifecycle but no built-in sub-state management. Without an explicit state machine, conditional logic scattered across `create`, input handlers, and update multiplies as the feature grows. A `const enum` compiles to integer literals — zero runtime overhead — and the transition guard prevents illegal state jumps (e.g., jumping from `Idle` to `Complete`) from silently corrupting the scene. Each `enterX` function becomes the single authoritative place where Phaser GameObjects are shown, hidden, or restyled for that state.
 
 ## Specific Change Example
 ```ts
-const panel = this.add.container(20, 360);
-const bg = this.add.rectangle(0, 0, 920, 150, 0x111827).setOrigin(0, 0);
-const line = this.add.text(16, 14, currentNode.text, textStyle);
-panel.add([bg, line]);
+const enum DialogueState { Idle, Active, AwaitingChoice, Complete }
+
+export class Module05RpgScene extends Phaser.Scene {
+  private state: DialogueState = DialogueState.Idle;
+
+  private transition(next: DialogueState): void {
+    const allowed: Record<DialogueState, DialogueState[]> = {
+      [DialogueState.Idle]:           [DialogueState.Active],
+      [DialogueState.Active]:         [DialogueState.AwaitingChoice],
+      [DialogueState.AwaitingChoice]: [DialogueState.Active, DialogueState.Complete],
+      [DialogueState.Complete]:       [],
+    };
+    if (!allowed[this.state].includes(next)) {
+      console.warn(`Invalid transition: ${this.state} → ${next}`);
+      return;
+    }
+    this.state = next;
+    const enters = {
+      [DialogueState.Idle]:           () => this.enterIdle(),
+      [DialogueState.Active]:         () => this.enterActive(),
+      [DialogueState.AwaitingChoice]: () => this.enterAwaitingChoice(),
+      [DialogueState.Complete]:       () => this.enterComplete(),
+    };
+    enters[next]();
+  }
+
+  private enterIdle()           { console.log('state: Idle'); }
+  private enterActive()         { console.log('state: Active'); }
+  private enterAwaitingChoice() { console.log('state: AwaitingChoice'); }
+  private enterComplete()       { console.log('state: Complete'); }
+}
 ```
 
-## What To Observe In Runtime
-- Input behavior: pointer/keyboard actions produce predictable scene updates.
-- Visual feedback: UI/game objects clearly communicate state changes.
-- Scene architecture: game logic remains readable as Phaser-specific features are added.
+## What To Observe At Runtime
+- On scene load, the DevTools console logs `'state: Active'` — confirming the automatic transition from `Idle`.
+- Clicking the dialogue panel logs `'state: AwaitingChoice'`.
+- Attempting to transition from `Idle` directly to `Complete` (e.g., by calling it from the console) logs the warning and leaves the state unchanged.
 
 ## Done Criteria
-- The base lesson still works after advanced changes.
-- The advanced feature is visible in-game and can be demonstrated in under 1 minute.
-- Notes include one Phaser concept learned and one Phaser API used.
+- [ ] `const enum DialogueState` is declared outside the class with four members.
+- [ ] `transition()` rejects invalid moves with a console warning and returns early.
+- [ ] Scene starts in `Active` state on creation, confirmed by the console log.
+- [ ] Committed naming the Phaser API used (scene class structure, `const enum`).
+
+## Common Phaser Pitfalls
+- Placing `const enum` inside the class body: TypeScript will not compile it there — enums must be at module scope or namespace scope.
+- Calling enter functions directly (bypassing `transition`) to "shortcut" the guard: this defeats the machine and allows invalid states to persist silently until a later transition fails.
 
 ## References
-- [Phaser Concepts](https://docs.phaser.io/phaser/concepts)
-- [Phaser API Docs](https://newdocs.phaser.io/docs/3.80.0)
-- [Phaser Examples](https://phaser.io/examples)
+- [Phaser Scene Lifecycle](https://docs.phaser.io/phaser/concepts/scenes)
+- [TypeScript const enum](https://www.typescriptlang.org/docs/handbook/enums.html#const-enums)
+- [Game Programming Patterns — State](https://gameprogrammingpatterns.com/state.html)

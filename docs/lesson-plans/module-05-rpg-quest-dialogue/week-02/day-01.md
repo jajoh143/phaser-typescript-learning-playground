@@ -50,5 +50,8 @@ Add one collectible requirement and complete quest when returned.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+A fetch quest tracks an objective count in state and checks it on item pickup. `quest.objectiveCount += 1` mutates state; a separate display update call syncs the visual — Phaser does not automatically re-render when a plain object changes. Use a Text GameObject like `"Lanterns: 2 / 3"` as the HUD objective display and call `text.setText(...)` every time the count changes.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

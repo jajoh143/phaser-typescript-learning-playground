@@ -50,5 +50,8 @@ Add left/right movement and single jump when on floor.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+Keyboard input in Phaser is processed via the Input Plugin. Key concept: `this.input.keyboard.createCursorKeys()` returns an object with `left`, `right`, `up`, `down`, and `space` keys you can poll each frame in `update()`. Key concept: `cursor.space.isDown` is polled in `update()` — it is `true` every frame the key is held, not just on the first frame, so a jump guard (`body.blocked.down`) is required to prevent infinite jumping.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

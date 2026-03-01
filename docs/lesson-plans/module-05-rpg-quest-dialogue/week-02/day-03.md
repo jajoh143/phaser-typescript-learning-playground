@@ -50,5 +50,8 @@ Build a GameState object and read/update it from dialogue and quest flows.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+In-memory state is lost when a scene restarts. Storing state in a scene class property (`private questState`) persists only while the scene is active — the property is re-initialised on every `create()` call. To survive scene transitions, store state in `this.game.registry` (survives for the game session) or `localStorage` (survives page reload).
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

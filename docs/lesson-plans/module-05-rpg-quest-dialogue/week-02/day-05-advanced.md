@@ -1,43 +1,89 @@
-# Advanced Phaser Track - week-02 - day-05
+# Advanced Phaser Track — Quest + Dialogue RPG — Week 2 — Day 5: Global vs Scene Event Bus
 
 ## Audience
-Developer with strong JavaScript/TypeScript skills and beginner Phaser knowledge.
+Senior JavaScript/TypeScript developer learning Phaser. This lesson is fully self-contained — no need to reference the beginner track.
 
-## Phaser Learning Focus
-UI composition with containers/text, interaction flow, and event-driven state updates.
+## Session Goal
+Demonstrate the difference between `this.events` (scene-scoped) and `this.game.events` (game-scoped) by emitting a quest completion event on both buses and verifying which listeners fire in which scenes.
 
-## Secondary Task (Phaser-First)
-Add QA/debug controls for jumping to dialogue nodes and quest states.
+## Phaser System Focus
+`this.events` (scene `EventEmitter`) vs `this.game.events` (game `EventEmitter`) — scope, lifetime, and cross-scene propagation.
 
+## What To Build (30 Minutes)
+- 5 min: Read this lesson and inspect `Module05RpgScene.ts`.
+- 20 min: Implement the task below.
+- 5 min: Run the game, verify the behavior visually, and write one observation note.
 
-## Why This Phaser Change Matters
-- This Phaser task (Add QA/debug controls for jumping to dialogue nodes and quest states.) targets the engine competency for today: UI composition with containers/text, interaction flow, and event-driven state updates..
-- Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.
+## Implementation Task
+Add a quest completion flow that emits on both buses and proves the scope difference:
 
-## Phaser Documentation Takeaways
-- Phaser physics concepts show how bodies, colliders, and overlaps should drive gameplay instead of manual checks.
-- Check Phaser API signatures while implementing Add QA/debug controls for jumping to dialogue nodes and quest states. to avoid incorrect assumptions about method behavior.
-- Use Phaser examples as implementation references for Add QA/debug controls for jumping to dialogue nodes and quest states., then adapt them to your module architecture.
+1. In `Module05RpgScene.ts`, add a keyboard listener for the `C` key that simulates quest completion:
+   ```ts
+   this.input.keyboard?.on('keydown-C', () => this.completeQuest('lantern-quest'));
+   ```
+2. Implement `private completeQuest(questId: string): void`:
+   - Emit on the **scene bus**: `this.events.emit('quest:complete', questId)` — heard only by listeners registered on this scene instance.
+   - Emit on the **game bus**: `this.game.events.emit('quest:complete', questId)` — heard by any scene or system that has subscribed to `this.game.events`.
+3. In `create()`, add a scene-bus listener that logs `[Scene] quest:complete` and updates a status Text to `'Quest complete!'`.
+4. Also in `create()`, add a game-bus listener that logs `[Game] quest:complete` — this simulates what the module hub scene would receive.
+5. In `shutdown()`, remove **both** listeners:
+   ```ts
+   this.events.off('quest:complete', ...);
+   this.game.events.off('quest:complete', ...);
+   ```
+
+## Target Files
+- `src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts`
+
+## Why This Phaser Pattern Matters
+`this.events` is created fresh for each scene instance and is destroyed when the scene stops — any listener registered here is automatically cleaned up. `this.game.events` lives for the entire game session; listeners survive scene transitions. Use `this.events` for intra-scene communication (dialogue panel, HUD, state machine). Use `this.game.events` only when another scene genuinely needs to react — for example, the module hub updating a completion badge when this scene emits `'quest:complete'`. Mixing the two without understanding scope causes orphaned listeners and duplicate firings.
 
 ## Specific Change Example
 ```ts
-const panel = this.add.container(20, 360);
-const bg = this.add.rectangle(0, 0, 920, 150, 0x111827).setOrigin(0, 0);
-const line = this.add.text(16, 14, currentNode.text, textStyle);
-panel.add([bg, line]);
+// In create():
+this.events.on('quest:complete', this.onQuestCompleteScene, this);
+this.game.events.on('quest:complete', this.onQuestCompleteGame, this);
+
+// Handlers:
+private onQuestCompleteScene(questId: string): void {
+  console.log('[Scene] quest:complete', questId);
+  this.statusText.setText('Quest complete!');
+}
+
+private onQuestCompleteGame(questId: string): void {
+  console.log('[Game] quest:complete', questId);
+  // In a real hub scene: update badge, unlock next module, etc.
+}
+
+// Emit on both buses:
+private completeQuest(questId: string): void {
+  this.events.emit('quest:complete', questId);
+  this.game.events.emit('quest:complete', questId);
+}
+
+// Cleanup in shutdown():
+shutdown(): void {
+  this.events.off('quest:complete', this.onQuestCompleteScene, this);
+  this.game.events.off('quest:complete', this.onQuestCompleteGame, this);
+}
 ```
 
-## What To Observe In Runtime
-- Input behavior: pointer/keyboard actions produce predictable scene updates.
-- Visual feedback: UI/game objects clearly communicate state changes.
-- Scene architecture: game logic remains readable as Phaser-specific features are added.
+## What To Observe At Runtime
+- Pressing `C` logs both `[Scene] quest:complete lantern-quest` and `[Game] quest:complete lantern-quest` in DevTools, showing both buses fire.
+- Navigate to the hub (H) and back, then press `C` again: if `shutdown()` cleanup is removed, `[Game] quest:complete` fires twice — once for the old listener and once for the new — proving that game-bus listeners must be manually removed.
+- If you register only a `this.game.events` listener in a hypothetical hub scene and emit from this scene, the hub receives the event without any direct import or reference to this scene.
 
 ## Done Criteria
-- The base lesson still works after advanced changes.
-- The advanced feature is visible in-game and can be demonstrated in under 1 minute.
-- Notes include one Phaser concept learned and one Phaser API used.
+- [ ] `this.events.emit('quest:complete', questId)` and `this.game.events.emit('quest:complete', questId)` are both called in `completeQuest`.
+- [ ] Separate handler methods are subscribed on each bus with `this` as context.
+- [ ] `shutdown()` removes both listeners — tested by verifying no duplicate logs on scene re-entry.
+- [ ] Committed naming the Phaser API used (`this.events`, `this.game.events`, scope distinction).
+
+## Common Phaser Pitfalls
+- Registering all quest events on `this.game.events` by default: when the scene restarts, listeners accumulate because game-bus listeners are not automatically removed. One C keypress eventually fires the handler N times where N equals the number of scene visits.
+- Assuming `this.events.emit` can be heard from the hub scene: scene-scoped events are invisible outside the scene instance. Use `this.game.events` for any cross-scene communication.
 
 ## References
-- [Phaser Concepts](https://docs.phaser.io/phaser/concepts)
-- [Phaser API Docs](https://newdocs.phaser.io/docs/3.80.0)
-- [Phaser Examples](https://phaser.io/examples)
+- [Phaser Scene Events](https://docs.phaser.io/phaser/concepts/scenes/events)
+- [Game EventEmitter API](https://newdocs.phaser.io/docs/3.80.0/Phaser.Game#events)
+- [EventEmitter on/off/emit](https://newdocs.phaser.io/docs/3.80.0/Phaser.Events.EventEmitter)

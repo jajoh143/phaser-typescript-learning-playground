@@ -50,5 +50,8 @@ Create typed interfaces for DialogueNode and DialogueChoice.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+A dialogue tree is a plain TypeScript data structure — Phaser has no built-in dialogue system. You build the data model first (nodes + choices), then wire it to Phaser display objects. `introDialogue` in `dialogue.ts` is loaded into the scene via a normal ES module import — Phaser does not manage or parse it.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

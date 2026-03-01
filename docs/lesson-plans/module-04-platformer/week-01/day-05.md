@@ -50,5 +50,8 @@ Update gravity/moveSpeed/jumpVelocity and note why.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+Physics tuning constants like `gravityY`, `moveSpeed`, and `jumpVelocity` directly control how the player feels to operate — they are the knobs between "this feels right" and "this feels broken." Key concept: Lower `jumpVelocity` (less negative, e.g. `-250` instead of `-420`) means a lower, shorter jump arc; higher `gravityY` means the player falls faster and the game feels heavier. Key concept: Documenting why you chose a value (e.g. `// 900 = snappy arcade feel; lower for floaty`) helps future you understand the intent rather than re-discovering it by trial and error.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

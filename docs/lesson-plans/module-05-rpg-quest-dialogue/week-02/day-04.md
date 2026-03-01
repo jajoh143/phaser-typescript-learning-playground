@@ -50,5 +50,8 @@ Move transition logic to logic/ and keep scene focused on rendering/input.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+Separating dialogue logic into `dialogue.ts` makes it a pure TypeScript module with no Phaser dependency. Pure functions (input in, output out, no side effects) are easier to reason about and test in isolation — you can call them in a plain Node.js script without booting Phaser. The scene is responsible for rendering; the logic module is responsible for data transforms. Nothing in `dialogue.ts` should ever import from Phaser.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

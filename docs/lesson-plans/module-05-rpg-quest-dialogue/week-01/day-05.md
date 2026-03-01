@@ -50,5 +50,8 @@ When player accepts quest, set status to active and update UI.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+Phaser scene events (`this.events.emit/on`) let different parts of the same scene communicate without direct coupling. Emitting `'dialogue:advanced'` lets the HUD update without the dialogue logic knowing anything about the HUD — this is the Observer pattern, the same mechanism Phaser uses internally for its own lifecycle events like `'create'` and `'shutdown'`.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

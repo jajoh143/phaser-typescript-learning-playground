@@ -50,5 +50,8 @@ Create quest statuses locked/active/complete and transition functions.
 - Dialogue ids and choice targets not matching, causing dead-end branches.
 - Quest state changes not refreshing UI text after transitions.
 
+## Phaser Context
+Quest state (`locked`, `active`, `complete`) is a TypeScript union type — a pattern for finite state. A union type `"locked" | "active" | "complete"` prevents assigning invalid strings at compile time, giving you a type error immediately rather than a silent runtime bug. Phaser doesn't manage quest state; you track it in a plain object and call `text.setText()` on the relevant display object to sync the visual.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.

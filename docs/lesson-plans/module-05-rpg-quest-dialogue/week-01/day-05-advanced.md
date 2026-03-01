@@ -1,43 +1,83 @@
-# Advanced Phaser Track - week-01 - day-05
+# Advanced Phaser Track — Quest + Dialogue RPG — Week 1 — Day 5: Reactive UI via Scene Events
 
 ## Audience
-Developer with strong JavaScript/TypeScript skills and beginner Phaser knowledge.
+Senior JavaScript/TypeScript developer learning Phaser. This lesson is fully self-contained — no need to reference the beginner track.
 
-## Phaser Learning Focus
-UI composition with containers/text, interaction flow, and event-driven state updates.
+## Session Goal
+Decouple rendering from state transitions by emitting a `'dialogue:nodeChanged'` scene event whenever the active node advances, and subscribing the dialogue panel's render method to that event — keeping the state machine free of direct display-object references.
 
-## Secondary Task (Phaser-First)
-Map dialogue choices to quest updates with a command-style dispatch table.
+## Phaser System Focus
+`Phaser.Events.EventEmitter` via `this.events` — `emit`, `on`, listener context binding, and `off` cleanup on scene shutdown.
 
+## What To Build (30 Minutes)
+- 5 min: Read this lesson and inspect `Module05RpgScene.ts`.
+- 20 min: Implement the task below.
+- 5 min: Run the game, verify the behavior visually, and write one observation note.
 
-## Why This Phaser Change Matters
-- This Phaser task (Map dialogue choices to quest updates with a command-style dispatch table.) targets the engine competency for today: UI composition with containers/text, interaction flow, and event-driven state updates..
-- Practicing this now improves engine intuition, so future scene and gameplay features can be implemented with fewer trial-and-error loops.
+## Implementation Task
+Refactor the dialogue advance flow to use the scene event bus:
 
-## Phaser Documentation Takeaways
-- Phaser concepts provide the engine mental model needed to choose the right system (scene/input/physics/UI) for each change.
-- Check Phaser API signatures while implementing Map dialogue choices to quest updates with a command-style dispatch table. to avoid incorrect assumptions about method behavior.
-- Use Phaser examples as implementation references for Map dialogue choices to quest updates with a command-style dispatch table., then adapt them to your module architecture.
+1. In your state machine's `enterActive()` method (from Day 4), after setting the current node, call:
+   ```ts
+   this.events.emit('dialogue:nodeChanged', this.currentNode);
+   ```
+2. Create a method `private renderNode(node: DialogueNode): void` that updates the dialogue panel's Text child to show `node.text` and calls `renderChoices(node)`.
+3. In `create()`, subscribe with:
+   ```ts
+   this.events.on('dialogue:nodeChanged', this.renderNode, this);
+   ```
+   The third argument `this` binds the listener's context so `this.dialogueLabel` resolves correctly inside `renderNode`.
+4. In a `shutdown()` override, remove the listener:
+   ```ts
+   this.events.off('dialogue:nodeChanged', this.renderNode, this);
+   ```
+5. Remove any direct `renderNode` calls from inside the state machine — the machine only emits; it never touches display objects.
+
+## Target Files
+- `src/modules/module-05-rpg-quest-dialogue/scenes/Module05RpgScene.ts`
+
+## Why This Phaser Pattern Matters
+`this.events` is the scene's own `EventEmitter` — it is destroyed automatically when the scene stops, so listeners registered with `this.events.on` do not leak across scene restarts the way `this.game.events` listeners would. Emitting an event as the sole output from a state transition means you can add any number of subscribers (HUD, debug overlay, analytics) without modifying the state machine. This is the Observer pattern at the scene layer — the same pattern Phaser uses internally for its own lifecycle events.
 
 ## Specific Change Example
 ```ts
-const panel = this.add.container(20, 360);
-const bg = this.add.rectangle(0, 0, 920, 150, 0x111827).setOrigin(0, 0);
-const line = this.add.text(16, 14, currentNode.text, textStyle);
-panel.add([bg, line]);
+// In create():
+this.events.on('dialogue:nodeChanged', this.renderNode, this);
+
+// State machine enter:
+private enterActive(): void {
+  // advance currentNode logic here ...
+  this.events.emit('dialogue:nodeChanged', this.currentNode);
+}
+
+// Render subscriber — no state machine knowledge:
+private renderNode(node: DialogueNode): void {
+  this.dialogueLabel.setText(node.text);
+  this.renderChoices(node);
+}
+
+// Cleanup:
+shutdown(): void {
+  this.events.off('dialogue:nodeChanged', this.renderNode, this);
+}
 ```
 
-## What To Observe In Runtime
-- Input behavior: pointer/keyboard actions produce predictable scene updates.
-- Visual feedback: UI/game objects clearly communicate state changes.
-- Scene architecture: game logic remains readable as Phaser-specific features are added.
+## What To Observe At Runtime
+- Advancing through dialogue nodes updates the panel text without any direct call from the state machine to the label or choice buttons.
+- Adding a second `this.events.on('dialogue:nodeChanged', ...)` listener (e.g., a debug logger) fires both without changing the state machine.
+- Removing the `shutdown()` cleanup and restarting the scene from the hub causes `renderNode` to be called twice per node advance on the second visit — demonstrating the leak that `off` prevents.
 
 ## Done Criteria
-- The base lesson still works after advanced changes.
-- The advanced feature is visible in-game and can be demonstrated in under 1 minute.
-- Notes include one Phaser concept learned and one Phaser API used.
+- [ ] `enterActive()` emits `'dialogue:nodeChanged'` with the current node as payload.
+- [ ] `renderNode` is subscribed via `this.events.on` with `this` as context — no arrow function wrapper needed.
+- [ ] `shutdown()` calls `this.events.off` with matching arguments to remove the listener.
+- [ ] Committed naming the Phaser API used (`this.events.emit`, `this.events.on`, `this.events.off`).
+
+## Common Phaser Pitfalls
+- Registering the listener with an arrow function instead of a method reference: `this.events.on('x', () => this.renderNode(n))` cannot be removed with `off` because the arrow function is a new object each call — `off` compares by reference.
+- Emitting from inside `renderNode` (creating a feedback loop): the event fires, `renderNode` runs, which emits again, causing a stack overflow. Only the state machine should emit `'dialogue:nodeChanged'`.
 
 ## References
-- [Phaser Concepts](https://docs.phaser.io/phaser/concepts)
-- [Phaser API Docs](https://newdocs.phaser.io/docs/3.80.0)
-- [Phaser Examples](https://phaser.io/examples)
+- [Phaser Scene Events](https://docs.phaser.io/phaser/concepts/scenes/events)
+- [EventEmitter API](https://newdocs.phaser.io/docs/3.80.0/Phaser.Events.EventEmitter)
+- [Phaser Examples — Scene Events](https://phaser.io/examples/v3/view/scenes/events)

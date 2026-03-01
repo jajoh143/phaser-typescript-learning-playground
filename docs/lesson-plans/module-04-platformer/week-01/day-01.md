@@ -50,5 +50,8 @@ Enable physics and create a player sprite/shape with gravity applied.
 - Infinite jump because grounded checks are missing.
 - Over-tuned gravity/jump constants making controls feel broken.
 
+## Phaser Context
+Phaser Arcade Physics simulates gravity, velocity, and collision for each physics body. Key concept: `this.physics.world.gravity.y` pulls all physics bodies downward each frame — every body with `allowGravity = true` accelerates toward positive Y automatically. Key concept: A "physics sprite" has both a visual (Sprite) and a body (ArcadeBody) attached — the body handles collision math while the sprite handles rendering.
+
 ## Stretch (Optional)
 - Add one small polish improvement while preserving readability.
